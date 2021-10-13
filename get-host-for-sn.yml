@@ -13,7 +13,7 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-      serialNumber: # SN# from DNAC
+      serialNumber: # SN# of the device you want from get all hosts playbook
     register: device_result
 
   - name: Show all network devices for SN#
