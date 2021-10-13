@@ -13,7 +13,6 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-#       serialNumber: # SN# from DNAC
     register: device_result
 
   - name: Show all network devices for SN#
