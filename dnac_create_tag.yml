@@ -3,6 +3,7 @@
     - cisco.dnac
   tags: 
     - create
+    - get
     - delete
   vars_files:
     - host_vars/credentials.yml
@@ -12,7 +13,7 @@
   - name: Create Tag
     tags: create
     block:
-    - name: Create tag with name "Ricks_TAG"
+    - name: Create tag with name "My_TAG"
       cisco.dnac.tag:
         dnac_host: "{{dnac_host}}"
         dnac_username: "{{dnac_username}}"
@@ -20,33 +21,36 @@
         dnac_verify: "{{dnac_verify}}"
         state: present
         description: My Tag
-        name: Ricks_TAG
-      register: result
+        name: My_TAG
+      register: create_result
 
-  - name: Delete Tag
-    tags: delete
+  - name: Get Tag
+    tags: get
     block:
-    - name: Get tag with name "Ricks_TAG"
+    - name: Get tag with name "My_TAG"
       cisco.dnac.tag_info:
         dnac_host: "{{dnac_host}}"
         dnac_username: "{{dnac_username}}"
         dnac_password: "{{dnac_password}}"
         dnac_verify: "{{dnac_verify}}"
-        name: Ricks_TAG
-      register: result
+        name: My_TAG
+      register: get_result
 
-    - name: Show tags with name "Ricks_TAG"
+    - name: Show tags with name "My_TAG"
       debug:
-        msg: "{{ result }}"
-
-    - name: Delete tag with name "Ricks_TAG"
+        msg: "{{ get_result }}"
+    
+    - name: Delete Tag    
+      tags: delete
+      block:
+    - name: Delete tag with name "My_TAG"
       cisco.dnac.tag:
         dnac_host: "{{dnac_host}}"
         dnac_username: "{{dnac_username}}"
         dnac_password: "{{dnac_password}}"
         dnac_verify: "{{dnac_verify}}"
         state: absent
-        name: Ricks_TAG
-      register: result
+        name: My_TAG
+      register: delete_result
 
       
