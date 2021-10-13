@@ -13,7 +13,7 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-      serialNumber: FDO2016E0H0
+      serialNumber: # SN# from get device playbook
     register: device_result
 
   - name: Show all network devices for SN#
