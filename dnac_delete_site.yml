@@ -13,7 +13,7 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+      siteId: # ID from get sites playbook
     register: delete_floor
     
   - name: Show Delete Result
@@ -29,7 +29,7 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+      siteId: # ID from get sites playbook
     register: delete_building
     
   - name: Show Delete Result
@@ -45,7 +45,7 @@
       dnac_port: "{{dnac_port}}"
       dnac_version: "{{dnac_version}}"
       dnac_debug: "{{dnac_debug}}"
-      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+      siteId: # ID from get sites playbook
     register: delete_site
     
   - name: Show Delete Result
