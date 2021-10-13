@@ -1,0 +1,54 @@
+- hosts: dnac_servers
+  vars_files:
+    - host_vars/credentials.yml
+  gather_facts: no
+  tasks:
+
+  - name: Delete Floor
+    cisco.dnac.site_delete:  
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+    register: delete_floor
+    
+  - name: Show Delete Result
+    debug:
+      msg: "{{ delete_floor }}"
+
+   - name: Delete Building
+    cisco.dnac.site_delete:  
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+    register: delete_building
+    
+  - name: Show Delete Result
+    debug:
+      msg: "{{ delete_building }}"
+
+  - name: Delete Site
+    cisco.dnac.site_delete:  
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      siteId: 8c093b4b-0561-4b63-b3c4-648487d09d4e
+    register: delete_site
+    
+  - name: Show Delete Result
+    debug:
+      msg: "{{ delete_site }}"
+

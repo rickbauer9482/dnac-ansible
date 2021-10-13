@@ -1,0 +1,52 @@
+- hosts: dnac_servers
+  collections:
+    - cisco.dnac
+  tags: 
+    - create
+    - delete
+  vars_files:
+    - host_vars/credentials.yml
+  gather_facts: no
+
+  tasks:
+  - name: Create Tag
+    tags: create
+    block:
+    - name: Create tag with name "Ricks_TAG"
+      cisco.dnac.tag:
+        dnac_host: "{{dnac_host}}"
+        dnac_username: "{{dnac_username}}"
+        dnac_password: "{{dnac_password}}"
+        dnac_verify: "{{dnac_verify}}"
+        state: present
+        description: My Tag
+        name: Ricks_TAG
+      register: result
+
+  - name: Delete Tag
+    tags: delete
+    block:
+    - name: Get tag with name "Ricks_TAG"
+      cisco.dnac.tag_info:
+        dnac_host: "{{dnac_host}}"
+        dnac_username: "{{dnac_username}}"
+        dnac_password: "{{dnac_password}}"
+        dnac_verify: "{{dnac_verify}}"
+        name: Ricks_TAG
+      register: result
+
+    - name: Show tags with name "Ricks_TAG"
+      debug:
+        msg: "{{ result }}"
+
+    - name: Delete tag with name "Ricks_TAG"
+      cisco.dnac.tag:
+        dnac_host: "{{dnac_host}}"
+        dnac_username: "{{dnac_username}}"
+        dnac_password: "{{dnac_password}}"
+        dnac_verify: "{{dnac_verify}}"
+        state: absent
+        name: Ricks_TAG
+      register: result
+
+      

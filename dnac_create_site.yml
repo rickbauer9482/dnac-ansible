@@ -1,0 +1,67 @@
+- hosts: dnac_servers
+  vars_files:
+    - host_vars/credentials.yml
+  gather_facts: no
+  tasks:
+
+  - name: Create Site
+    cisco.dnac.site_create:
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      site: 
+        area:
+          name: New Jersey
+          parentName: Global/USA
+      type: area
+    register: site_result
+  - name: Show Site Result
+    debug:
+      msg: "{{ site_result }}"
+
+  - name: Create Building
+    cisco.dnac.site_create:  
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      site:        
+        building:
+          address: 100 Wood Avenue, Iselin, New Jersey 08830
+          name: Building 100
+          parentName: Global/USA/New Jersey
+      type: building 
+    register: building_result
+  - name: Show Building Result
+    debug:
+      msg: "{{ building_result }}"
+
+  - name: Create Floor
+    cisco.dnac.site_create:  
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      site:  
+        floor:
+          height: 10
+          length: 200
+          name: Floor 1
+          parentName: Global/USA/New Jersey/Building 100
+          rfModel: Drywall Office Only
+          width: 100
+      type: floor
+    register: floor_result
+  - name: Show Floor Result
+    debug:
+      msg: "{{ floor_result }}"

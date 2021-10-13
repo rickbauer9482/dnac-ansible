@@ -1,0 +1,23 @@
+- hosts: dnac_servers
+  vars_files:
+    - host_vars/credentials.yml
+  gather_facts: no
+  tasks:
+
+  - name: Get all Site
+    cisco.dnac.site_info:
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+      # headers:
+      #   custom: value
+      # type: area
+    register: all_sites_result
+
+  - name: Show Site Result
+    debug:
+      msg: "{{ all_sites_result }}"
