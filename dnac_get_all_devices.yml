@@ -1,0 +1,21 @@
+- hosts: dnac_servers
+  vars_files:
+    - host_vars/credentials.yml
+  gather_facts: no
+  tasks:
+
+  - name: Get Network Devices
+    cisco.dnac.network_device_info:
+      dnac_host: "{{dnac_host}}"
+      dnac_username: "{{dnac_username}}"
+      dnac_password: "{{dnac_password}}"
+      dnac_verify: "{{dnac_verify}}"
+      dnac_port: "{{dnac_port}}"
+      dnac_version: "{{dnac_version}}"
+      dnac_debug: "{{dnac_debug}}"
+#       serialNumber: # SN# from DNAC
+    register: device_result
+
+  - name: Show all network devices for SN#
+    debug:
+      msg: "{{ device_result }}"
