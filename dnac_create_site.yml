@@ -15,8 +15,8 @@
       dnac_debug: "{{dnac_debug}}"
       site: 
         area:
-          name: New Jersey
-          parentName: Global/USA
+          name:
+          parentName: 
       type: area
     register: site_result
   - name: Show Site Result
@@ -34,9 +34,9 @@
       dnac_debug: "{{dnac_debug}}"
       site:        
         building:
-          address: 100 Wood Avenue, Iselin, New Jersey 08830
-          name: Building 100
-          parentName: Global/USA/New Jersey
+          address: 
+          name: 
+          parentName: 
       type: building 
     register: building_result
   - name: Show Building Result
@@ -56,8 +56,8 @@
         floor:
           height: 10
           length: 200
-          name: Floor 1
-          parentName: Global/USA/New Jersey/Building 100
+          name: 
+          parentName: 
           rfModel: Drywall Office Only
           width: 100
       type: floor
